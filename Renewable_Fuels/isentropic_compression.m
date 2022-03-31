@@ -79,7 +79,7 @@ plot(P2,(h2 - h1)./1000,'LineWidth',2)
 box on
 grid on
 set(gca,'FontSize',14)
-ylabel('Specific Work (kJ/kg/s)','FontSize',16)
+ylabel('Specific Work (kJ/kg)','FontSize',16)
 xlabel('Pressure After Compression (atm)','FontSize',16)
 xlim([min(P2) max(P2)])
 hold off
