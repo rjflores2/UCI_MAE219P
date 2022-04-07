@@ -2,7 +2,7 @@
 %%%equation 12.15. This script assumes that each day is 12 hours long, sun
 %%%rise is at 6 am, and sun set is 6pm. These are obvious sources of error
 close all, clear all, close all
-
+%% Comment
 %% Defining constants
 
 %%%Radiative power
