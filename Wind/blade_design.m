@@ -69,7 +69,7 @@ CD = .12 - .11*cosd(a);
 %% Loop across different parts of the blade
 
 %%%Blade discretizaiton
-disc = 50; %%%Number of blade chunks considerd in the analysis
+disc = 1000; %%%Number of blade chunks considerd in the analysis
 
 %%%Declaring blade area variable
 blade_area = 0;
@@ -96,7 +96,8 @@ for ii = 1:disc
     
     setup_angle(ii) = a - 180/pi*atan(2*bl/3/ts_design/r_i(ii));
     
-   
+    %%%Power produced at each section of the blade
+   power(ii) = eff_design*bn*rot_speed*(1/2)*dens*w_i*(bl/disc)*K(ii)*(CL*2/3*v_design - CD*r_i(ii)*rot_speed)*r_i(ii)/1000/1000;
 end
 
 %% Plotting some results
@@ -120,15 +121,11 @@ ylabel('Setup Angle (Degree)','FontSize',18)
 xlabel('Blade Position from Hub (m)','FontSize',18)
 hold off
 
-%% trash bin
-%  %%%lift force
-%     lift(ii) = (1/2)*dens*w_i^2*CL*(bn*K(ii)*(bl/disc))*sind(setup_angle(ii));
-%     
-%     %%%Drag Force
-%     drag(ii) = (1/2)*dens*w_i^2*CD*(bn*K(ii)*(bl/disc))*cosd(setup_angle(ii));
-%     
-%     %%%Torque
-%     torque(ii) = (lift(ii) - drag(ii))*r_i(ii);
-%     
-%     %%%Power
-%     power(ii) = torque(ii)*bn*rot_speed;
+figure
+hold on
+plot(r_i,power,'LineWidth',2)
+box on
+grid on
+ylabel('Power (MW)','FontSize',18)
+xlabel('Blade Position from Hub (m)','FontSize',18)
+hold off
